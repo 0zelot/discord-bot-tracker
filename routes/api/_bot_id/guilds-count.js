@@ -22,7 +22,7 @@ export default async (fastify, options) => {
             error: "This bot is not tracked"
         });
 
-        if(req.headers.authorization !== bot.guilds_webhook_token) return res.status(401).send({
+        if(req.headers.authorization !== bot.webhook_token) return res.status(401).send({
             success: false,
             error: "Unauthorized"
         });
