@@ -7,6 +7,8 @@ import { join } from "node:path";
 
 import config from "./config.json" assert { type: "json" };
 
+import "./tasks/traceGuildsCount.js";
+
 const fastify = Fastify({
     trustProxy: true,
     ignoreTrailingSlash: true

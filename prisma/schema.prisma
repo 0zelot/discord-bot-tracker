@@ -13,5 +13,7 @@ datasource db {
 model guilds_count {
     id Int @id @default(autoincrement())
     bot_id String
+    declared_guilds_count Int
+    approximate_guilds_count Int
     date DateTime @updatedAt
 }
