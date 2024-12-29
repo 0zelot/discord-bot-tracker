@@ -16,10 +16,8 @@ const fastify = Fastify({
 
 fastify.register(cors);
 fastify.register(autoload, {
-    dir: join(process.cwd(), "routes", "api"),
-    options: { 
-        prefix: "/api" 
-    }
+    dir: join(process.cwd(), "routes"),
+    routeParams: true
 });
 
 const prisma = new PrismaClient();
