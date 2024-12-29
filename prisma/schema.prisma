@@ -17,3 +17,11 @@ model guilds_count {
     approximate_guilds_count Int?
     date DateTime @updatedAt
 }
+
+model votes {
+    id Int @id @default(autoincrement())
+    bot_id String
+    service String
+    user_id String?
+    date DateTime @updatedAt
+}
