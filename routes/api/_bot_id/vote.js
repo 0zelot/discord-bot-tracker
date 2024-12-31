@@ -1,3 +1,5 @@
+import { jwtDecode } from "jwt-decode";
+
 import { prisma } from "../../../index.js";
 
 import config from "../../../config.json" assert { type: "json" };
@@ -25,7 +27,7 @@ export default async (fastify, options) => {
             error: "This bot is not tracked"
         });
 
-        if(req.headers.authorization !== bot.vote_webhook_tokens[service]) return res.status(401).send({
+        if((service !== "discordlist_gg") && (req.headers.authorization !== bot.vote_webhook_tokens[service])) return res.status(401).send({
             success: false,
             error: "Unauthorized"
         });
@@ -53,10 +55,13 @@ export default async (fastify, options) => {
 
         } else if(service == "discordlist_gg") {
 
-            await prisma.votes.create({
+            const decoded = jwtDecode(req.body);
+
+            if(!decoded.is_test) await prisma.votes.create({
                 data: {
                     bot_id: bot.id,
-                    service
+                    service,
+                    user_id: decoded.user_id
                 }
             });
 
