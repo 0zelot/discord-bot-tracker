@@ -6,5 +6,23 @@
         "@prisma/client": "^6.1.0",
         "fastify": "^5.2.0",
         "jwt-decode": "^4.0.0"
-    }
+    },
+    "name": "discord-bot-tracker",
+    "version": "1.0.0",
+    "description": "Discord bot stats tracking app",
+    "main": "index.js",
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/0zelot/discord-bot-tracker.git"
+    },
+    "author": "Ozelot <contact@ozelot.ovh> (https://ozelot.ovh/)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/0zelot/discord-bot-tracker/issues"
+    },
+    "homepage": "https://github.com/0zelot/discord-bot-tracker#readme"
 }
