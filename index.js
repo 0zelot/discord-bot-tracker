@@ -5,7 +5,7 @@ import { PrismaClient } from "@prisma/client";
 
 import { join } from "node:path";
 
-import config from "./config.json" assert { type: "json" };
+import config from "./config.json" with { type: "json" };
 
 import "./tasks/traceGuildsCount.js";
 

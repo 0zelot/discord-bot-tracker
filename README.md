@@ -11,7 +11,7 @@ An application for tracking your Discord bots. It can track:
 
 ## Requirements
 
-- NodeJS 18.12.1 or newer
+- NodeJS v22 or newer
 
 ## Setup
 

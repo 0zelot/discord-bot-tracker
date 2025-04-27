@@ -2,7 +2,7 @@ import { prisma } from "../index.js";
 
 import getApproximateGuildsCount from "../utils/getApproximateGuildsCount.js";
 
-import config from "../config.json" assert { type: "json" };
+import config from "../config.json" with { type: "json" };
 
 setInterval(async () => {
 

@@ -1,6 +1,6 @@
 import { prisma } from "../../../index.js";
 
-import config from "../../../config.json" assert { type: "json" };
+import config from "../../../config.json" with { type: "json" };
 
 export default async (fastify, options) => {
 
