@@ -19,7 +19,7 @@
         "type": "git",
         "url": "git+https://github.com/0zelot/discord-bot-tracker.git"
     },
-    "author": "Ozelot <contact@ozelot.ovh> (https://ozelot.ovh/)",
+    "author": "Ozelot <contact@ozelot.fyi> (https://ozelot.fyi/)",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/0zelot/discord-bot-tracker/issues"
