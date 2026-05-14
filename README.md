@@ -102,6 +102,7 @@ bot.on(Events.InteractionCreate, async interaction => {
         },
         body: JSON.stringify({
             command: interaction.commandName, // command name
+            type: 0, // 0 = chat input command, 1 = context command, 2 = button; optional, defaults to 0
             user: interaction.user.id, // user id
             guild: interaction.guild?.id // guild id; optional
         })

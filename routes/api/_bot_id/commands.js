@@ -25,18 +25,26 @@ export default async (fastify, options) => {
             error: "Unauthorized"
         });
 
-        const { command, user, guild } = req.body;
+        const { command, type, user, guild } = req.body;
 
         if(!command || !user) return res.status(400).send({
             success: false,
             error: "Missing body: command and/or user_id"
         });
 
+        const command_type = type ?? 0;
+
+        if(![0, 1, 2].includes(command_type)) return res.status(400).send({
+            success: false,
+            error: "Invalid body: type must be 0 (chat input), 1 (context) or 2 (button)"
+        });
+
         await prisma.commands.create({
             data: {
                 bot_id: bot.id,
-                command: command.toLowerCase(), 
-                user_id: user, 
+                command: command.toLowerCase(),
+                type: command_type,
+                user_id: user,
                 guild_id: guild
             }
         });

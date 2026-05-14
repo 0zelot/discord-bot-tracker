@@ -30,6 +30,7 @@ model commands {
     id Int @id @default(autoincrement())
     bot_id String
     command String
+    type Int @default(0)
     user_id String
     guild_id String?
     date DateTime @updatedAt
