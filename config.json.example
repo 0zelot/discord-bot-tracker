@@ -1,0 +1,19 @@
+{
+    "host": "0.0.0.0",
+    "port": 3000,
+    "guilds_frequency": 8,
+    "guilds_frequency_task": 300000,
+    "bots": [
+        {
+            "id": "XXXXXXXXXXXXXXXXXX",
+            "webhook_token": "some-webhook-token",
+            "vote_webhook_tokens": {
+                "top_gg": "some-webhook-token-topgg",
+                "discordlist_gg": "some-webhook-token-discordlistgg",
+                "discords_com": "some-webhook-token-discordlistgg",
+                "discordbotlist_com": "some-webhook-token-discordlistgg"
+            },
+            "notifications_webhook_url": "https://discord.com/api/webhooks/XXXXXXXXXXXXXXXXXX/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        }
+    ]
+}
