@@ -1,12 +1,12 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import autoload from "@fastify/autoload";
-import { PrismaClient } from "@prisma/client";
 
 import { join } from "node:path";
 
 import config from "./config.json" with { type: "json" };
 
+import "./prisma.js";
 import "./tasks/traceGuildsCount.js";
 
 const fastify = Fastify({
@@ -20,8 +20,6 @@ fastify.register(autoload, {
     routeParams: true
 });
 
-const prisma = new PrismaClient();
-
 (async () => {
     try {
         const { port, host } = config;
@@ -32,5 +30,3 @@ const prisma = new PrismaClient();
         process.exit(1);
     }
 })();
-
-export { prisma }
