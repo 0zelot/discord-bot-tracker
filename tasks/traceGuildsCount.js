@@ -1,5 +1,4 @@
-import { prisma } from "../index.js";
-
+import { prisma } from "../prisma.js";
 import getApproximateGuildsCount from "../utils/getApproximateGuildsCount.js";
 
 import config from "../config.json" with { type: "json" };

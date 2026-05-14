@@ -7,7 +7,6 @@ generator client {
 
 datasource db {
     provider = "sqlite"
-    url = "file:../database.db"
 }
 
 model guilds_count {

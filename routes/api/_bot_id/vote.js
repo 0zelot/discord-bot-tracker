@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 
-import { prisma } from "../../../index.js";
+import { prisma } from "../../../prisma.js";
 
 import config from "../../../config.json" with { type: "json" };
 

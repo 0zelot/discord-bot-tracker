@@ -21,11 +21,11 @@ An application for tracking your Discord bots. It can track:
 
 3. Configure the application by editing `config.json`
 
-4. Apply Prisma migrations `npx prisma migrate dev --name init`
+4. Apply Prisma migrations `npm run migrate:dev`
 
-5. Generate Prisma client `npx prisma generate`
+5. Generate Prisma client `npm run generate`
 
-6. Run `node index.js`
+6. Run `npm start`
 
 ## Configuration
 
