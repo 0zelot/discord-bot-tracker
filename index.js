@@ -11,7 +11,9 @@ import "./tasks/traceGuildsCount.js";
 
 const fastify = Fastify({
     trustProxy: true,
-    ignoreTrailingSlash: true
+    routerOptions: {
+        ignoreTrailingSlash: true
+    }
 });
 
 fastify.register(cors);
