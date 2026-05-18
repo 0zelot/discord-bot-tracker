@@ -34,3 +34,10 @@ model commands {
     guild_id String?
     date DateTime @updatedAt
 }
+
+model logins {
+    id Int @id @default(autoincrement())
+    bot_id String
+    user_id String
+    date DateTime @updatedAt
+}

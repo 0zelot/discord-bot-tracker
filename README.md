@@ -3,6 +3,7 @@
 An application for tracking your Discord bots. It can track:
 - Guilds count
 - Executed commands
+- User logins
 - Vote webhooks:
     - [top.gg](https://top.gg)
     - [discordlist.gg](https://discordlist.gg)
@@ -113,6 +114,25 @@ bot.on(Events.InteractionCreate, async interaction => {
     await command.execute(bot, interaction);
 
 })
+```
+
+### Logins tracker
+
+To track user logins send a POST to `/api/your-bot-id/logins` with `webhook_token` in header authorization and `user_id` as body data (JSON). This is useful for tracking unique users interacting with your bot (e.g. on a dashboard login).
+
+Example:
+
+```js
+await fetch("https://stats.example.com/api/488809387910234145/logins", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": "some-webhook-token"
+    },
+    body: JSON.stringify({
+        user_id: "123456789012345678" // user id
+    })
+});
 ```
 
 ### Vote webhooks
