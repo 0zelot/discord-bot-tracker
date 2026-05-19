@@ -72,11 +72,40 @@ export default async (fastify, options) => {
                     approximate_guilds_count: approximateGuildsCount
                 }
             });
-    
+
             res.send({ success: true });
 
         }
 
     });
-    
+
+    fastify.get("/guilds-count", async (req, res) => {
+
+        const { bot_id } = req.params;
+
+        if(!bot_id) return res.status(404).send({
+            success: false,
+            error: "Missing param: bot_id"
+        });
+
+        const bot = config.bots.find(bot => bot.id == bot_id);
+
+        if(!bot) return res.status(404).send({
+            success: false,
+            error: "This bot is not tracked"
+        });
+
+        if(req.headers.authorization !== bot.webhook_token) return res.status(401).send({
+            success: false,
+            error: "Unauthorized"
+        });
+
+        const guilds_count = await prisma.guilds_count.findMany({
+            where: { bot_id: bot.id }
+        });
+
+        res.send({ success: true, guilds_count });
+
+    });
+
 }

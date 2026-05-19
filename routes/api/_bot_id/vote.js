@@ -90,5 +90,54 @@ export default async (fastify, options) => {
         res.send({ success: true });
 
     });
-    
+
+    fastify.get("/vote/:service", async (req, res) => {
+
+        const { bot_id, service } = req.params;
+
+        if(!bot_id) return res.status(404).send({
+            success: false,
+            error: "Missing param: bot_id"
+        });
+
+        const bot = config.bots.find(bot => bot.id == bot_id);
+
+        if(!bot) return res.status(404).send({
+            success: false,
+            error: "This bot is not tracked"
+        });
+
+        if(req.headers.authorization !== bot.webhook_token) return res.status(401).send({
+            success: false,
+            error: "Unauthorized"
+        });
+
+        if(!service || !bot.vote_webhook_tokens[service]) return res.status(404).send({
+            success: false,
+            error: "Missing param: service (or invalid service provided)"
+        });
+
+        const { user_id } = req.query;
+
+        if(!user_id) return res.status(400).send({
+            success: false,
+            error: "Missing query: user_id"
+        });
+
+        const vote = await prisma.votes.findFirst({
+            where: {
+                bot_id: bot.id,
+                service,
+                user_id,
+                date: {
+                    gte: new Date(Date.now() - 12 * 60 * 60 * 1000),
+                },
+            },
+            orderBy: { date: "desc" }
+        });
+
+        res.send({ success: true, voted: !!vote });
+
+    });
+
 }

@@ -150,3 +150,66 @@ Each supported bot list service has its own endpoint:
 `some-webhook-token-topgg` is a thing you provided in `vote_webhook_tokens` -> `top_gg`. 
 
 For other bot list services, you configure it in the same way.
+
+## Reading data
+
+Each tracker exposes a GET endpoint to read back the stored data. All endpoints are authorized with `webhook_token` in the `Authorization` header (the same token used for guilds count, commands and logins POSTs — including the vote check endpoint).
+
+### Check if a user voted
+
+`GET /api/your-bot-id/vote/:service?user_id=...` returns whether the given user voted on the bot via the given service within the last 12 hours. `:service` must be one of: `top_gg`, `discordlist_gg`, `discords_com`, `discordbotlist_com`.
+
+Example:
+
+```js
+const res = await fetch("https://stats.example.com/api/488809387910234145/vote/top_gg?user_id=123456789012345678", {
+    headers: {
+        "Authorization": "some-webhook-token"
+    }
+});
+
+const { success, voted } = await res.json();
+// { success: true, voted: true }
+```
+
+### Fetch executed commands
+
+`GET /api/your-bot-id/commands` returns every row stored in the commands table for this bot.
+
+```js
+const res = await fetch("https://stats.example.com/api/488809387910234145/commands", {
+    headers: {
+        "Authorization": "some-webhook-token"
+    }
+});
+
+const { success, commands } = await res.json();
+```
+
+### Fetch guilds count history
+
+`GET /api/your-bot-id/guilds-count` returns every row stored in the guilds count table for this bot.
+
+```js
+const res = await fetch("https://stats.example.com/api/488809387910234145/guilds-count", {
+    headers: {
+        "Authorization": "some-webhook-token"
+    }
+});
+
+const { success, guilds_count } = await res.json();
+```
+
+### Fetch logins
+
+`GET /api/your-bot-id/logins` returns every row stored in the logins table for this bot.
+
+```js
+const res = await fetch("https://stats.example.com/api/488809387910234145/logins", {
+    headers: {
+        "Authorization": "some-webhook-token"
+    }
+});
+
+const { success, logins } = await res.json();
+```
